@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  lambda:
+    build: .
+    ports:
+      - "8000:8080"
+    develop:
+      watch:
+        - action: rebuild
+          path: ./src
+          target: /var/task
+    # volumes:
+    #   - ./src:/var/task  
+    env_file:
+      - .env
+    stdin_open: true
+    tty: true
